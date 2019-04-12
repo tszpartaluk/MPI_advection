@@ -1,0 +1,6 @@
+clear
+
+importsolution("files/serial/data/s_ftc_ca10_t5.dat",1,500);
+
+figure(1)
+scatter(
