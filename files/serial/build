@@ -1,0 +1,14 @@
+#!/bin/bash
+
+module load intel/2017.01
+
+
+# compile
+ifort -i4 -r8 -c ./source/schemes.f90 
+ifort -i4 -r8 -c ./source/prep.f90
+ifort -i4 -r8 -c ./source/serial.f90
+
+#link
+ifort -i4 -r8 serial.o prep.o schemes.o -o $1
+
+rm *.o

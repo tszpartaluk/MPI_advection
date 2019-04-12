@@ -1,0 +1,41 @@
+#!/bin/bash
+
+mkdir data
+dr=data
+
+# 5 seconds, CFL ~1.0
+CFL=0.928125000000000
+N=10
+./adv shock upwind $CFL 100 $N $dr/s_upw_ca10_t5.dat $dr/stats.dat
+./adv shock laxfr $CFL 100 $N $dr/s_lfr_ca10_t5.dat $dr/stats.dat
+./adv shock laxwe $CFL 100 $N $dr/s_lwe_ca10_t5.dat $dr/stats.dat
+./adv shock macco $CFL 100 $N $dr/s_mac_ca10_t5.dat $dr/stats.dat
+./adv shock ftcs $CFL 100 $N $dr/s_ftc_ca10_t5.dat $dr/stats.dat
+
+# 5 seconds, CFL ~0.5
+CFL=0.488486842105263
+N=19
+./adv shock upwind $CFL 100 $N $dr/s_upw_ca05_t5.dat $dr/stats.dat
+./adv shock laxfr $CFL 100 $N $dr/s_lfr_ca05_t5.dat $dr/stats.dat
+./adv shock laxwe $CFL 100 $N $dr/s_lwe_ca05_t5.dat $dr/stats.dat
+./adv shock macco $CFL 100 $N $dr/s_mac_ca05_t5.dat $dr/stats.dat
+./adv shock ftcs $CFL 100 $N $dr/s_ftc_ca05_t5.dat $dr/stats.dat
+
+
+# 10 seconds, CFL ~1.0
+CFL=0.928125000000000
+N=20
+./adv shock upwind $CFL 100 $N $dr/s_upw_ca10_t10.dat $dr/stats.dat
+./adv shock laxfr $CFL 100 $N $dr/s_lfr_ca10_t10.dat $dr/stats.dat
+./adv shock laxwe $CFL 100 $N $dr/s_lwe_ca10_t10.dat $dr/stats.dat
+./adv shock macco $CFL 100 $N $dr/s_mac_ca10_t10.dat $dr/stats.dat
+./adv shock ftcs $CFL 100 $N $dr/s_ftc_ca10_t10.dat $dr/stats.dat
+
+# 10 seconds, CFL ~0.5
+CFL=0.488486842105263
+N=38
+./adv shock upwind $CFL 100 $N $dr/s_upw_ca05_t10.dat $dr/stats.dat
+./adv shock laxfr $CFL 100 $N $dr/s_lfr_ca05_t10.dat $dr/stats.dat
+./adv shock laxwe $CFL 100 $N $dr/s_lwe_ca05_t10.dat $dr/stats.dat
+./adv shock macco $CFL 100 $N $dr/s_mac_ca05_t10.dat $dr/stats.dat
+./adv shock ftcs $CFL 100 $N $dr/s_ftc_ca05_t10.dat $dr/stats.dat
