@@ -2,15 +2,15 @@
 program advection
 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !! include part
-  use schemes
-  use prep
-  use paralrts
-  implicit none
-  include "mpif.h"
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !! include part
+    use schemes
+    use prep
+    use paralrts
+    implicit none
+    include "mpif.h"
 
-  
+
 
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -93,9 +93,9 @@ program advection
 
     Klcomp = Kl
     do i=1,2,1
-       if( Nbr(i) .ge. 0) then 
-          Klcomp = Klcomp + 1
-       end if
+        if( Nbr(i) .ge. 0) then 
+            Klcomp = Klcomp + 1
+        end if
     end do
 
     
@@ -112,13 +112,13 @@ program advection
     ! initialize solution
     ! set grid points location (or read mesh from file) - only used for initial condition calculation
     if( Nbr(1) .lt. 0) then
-       j = 0
+        j = 0   
     else 
-       j = 1
+        j = 1
     end if
     
     do i=1,Klcomp,1
-       X(i) = -L/2.0 + L/(K-1)*(i+Kb-1-j)
+        X(i) = -L/2.0 + L/(K-1)*(i+Kb-1-j)
     end do
     call fexact(x,0.0,f2,a)
 
@@ -126,11 +126,11 @@ program advection
     ! main time stepping loop
     call MPI_BARRIER(MPI_COMM_WORLD,Merror)
 
-	times(1) = MPI_WTIME()-t0
+    times(1) = MPI_WTIME()-t0
 
     call method(MPI_COMM_WORLD,f1,f2,CFL,Klcomp,N,fbound,Nbr,times(3))
-	times(2) = MPI_WTIME()-t0-times(1)
-	! calculate analytic solution in f1 to save memory
+    times(2) = MPI_WTIME()-t0-times(1)
+    ! calculate analytic solution in f1 to save memory
     call fexact(x,L*CFL*N/a/(K-1),f1,a)
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
